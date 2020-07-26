@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid" style="background-image: url('static/images/3.jpg');background-repeat: no-repeat;background-size:100% 100%;color: white;text-align: center;">
+    <h1>CONTACT US </h1>
+    <br><hr>
+        <section>
+            <div class="row">
+                    <div class="col-lg-4">
+                                <i class="fa fa-home"></i>
+                                <h4>T.U.O</h4>
+                                <p>D 202, Magilam Apartments, Natesan Road, Old Pallavaram, Chennai 600117</p>
+                        <vr>
+                    </div>
+                    <div class="col-lg-4">
+                                         <i class="fa fa-phone"></i>
+                                <h4>8939460240</h4>
+                    </div>
+                    <div class="col-lg-4">
+                                        <i class="fa fa-envelope"></i>
+                                <h5>thulir.udhayam.organisation@gmail.com</h5>
+                                <p>Send us your query anytime!</p>
+                </div>
+            </div>
+            </section>
+            <hr><br>
+            <h1>Send Us Your Queries </h1><br>
+            <form class="form-container" style="padding-left: 10%;padding-right: 10%;" method="POST" action="{% url 'contact' %}">
+              {% csrf_token %}
+                  <input type="text" class="form-control" id="name" placeholder="Name" name="name" required><br><br>
+            
+                  <input type="email" class="form-control" id="email" placeholder="Email Address" name="email" required><br><br>
+
+                  <input type="tel" class="form-control" id="number" placeholder="Phone Number" name="number" required><br><br>
+              
+                  <input type="text" class="form-control" id="subject" placeholder="Subject" name="subject" required><br><br>
+
+                  <textarea class="form-control" id="message" rows="5" placeholder="Message" name="message" required></textarea><br><br>
+                  
+                  <button type="submit" class="btn btn-success">Send Message</button><br><br>
+              </form>
+</div>
+{% endblock content %}
+
+

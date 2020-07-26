@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid" style="background-image: url('static/images/5.png');background-repeat: no-repeat;background-size:100% 100%;color: white;text-align: left;height: 550px;">
+    <div class="row">
+        <div class="col-lg-5" style="top:100px;">
+            <form class="form-container" method="POST" action="{% url 'opinion' %}">
+              {% csrf_token %}
+                <br><input type="text" class="form-control" id="id" name="id" placeholder="Enter the Name or Email Id or Phone Number" required><br>
+                <p style="color:#31B0D5"><b>Raise your voice against one thing that you would change, if you get the power!</b></p>
+                <textarea class="form-control" id="message" rows="5" placeholder="Your Opinion" name="opinion" required></textarea><br>
+                <button type="submit" class="btn btn-success">Submit</button><br>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

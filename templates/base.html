@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Thulir Udhayam Organisation</title>
+  <link rel = "icon" href ="static/images/new_icon.jpeg" type = "image/x-icon">  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #EBEBEB;
+      color: #12436D;;
+      padding: 15px;
+      margin-bottom: 0%;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+    }
+    
+  </style>
+  <script type="text/javascript">
+  function join() {
+    alert("Joined Successfully");
+    $('#myModal').modal('hide')
+  }
+  function support() {
+    alert("Thank You For Your Support");
+    $('#supportModal').modal('hide')
+  }
+  $(document).ready(function(){
+    let joinFlag = "{{joinFlag|safe}}";
+    let successMsg = "{{successMsg|safe}}";
+    if(joinFlag == 1){
+      $("#error").html("Email Id already registered");
+        $('#alertModal').modal("show");
+      }
+      if(joinFlag == 0){
+        $('#error').removeClass('alert-danger')
+        $('#error').addClass('alert-success')  
+        $("#error").html(successMsg);
+        $('#alertModal').modal("show");
+      }
+    });
+  </script>
+</head>
+<body>
+    <div class="jumbotron" style="background-color:#EBEBEB">
+        <div class="row">
+            <div class="col-lg-4">
+                <a href="index.html" style="text-decoration: none;"><img src="static/images/new_icon.jpeg" alt="Icon" height="50em"><span style="font-size: 19px;color:#12436D;">&nbsp;Thulir Udhayam Organisation</span> </a>
+            </div>
+            <div class="col-lg-6" style="text-align:center;color: #289FDB">
+                <h2><i>"துளிர் உதயம் 🌱🕊️"</i></h2>
+            </div>
+        </div>
+    </div>
+<nav class="navbar navbar-inverse" style="font-size: 20px;margin-top: -30px;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'agenda' %}">Agenda</a></li>
+        <li><a href="{% url 'happening' %}">Happenings</a></li>
+        <li><a href="{% url 'blog' %}">Blog</a></li>
+        <li><a href="{% url 'opinion' %}">People's Opinion</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-user-plus"></i> Join</button></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div>
+    {% block content %}
+          
+
+    {% endblock content %}
+</div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog"> 
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Personal Details</h4>
+        </div>
+
+        <form class="form-container" method="POST" action="{% url 'joinForm' %}">
+            {% csrf_token %}
+        <div class="modal-body">
+          <label for="name"><b>Name : </b></label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter the name" required><br>
+      
+          <label for="email"><b>Email Id : </b></label>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Enter the Email Id" required><br>
+      
+          <label for="number"><b>Phone No : </b></label>
+          <input type="tel" class="form-control" id="number" name="number" placeholder="Enter the Phone Number" required><br>
+      
+          <label for="pin"><b>Pin Code : </b></label>
+          <input type="text" class="form-control" id="pin" name="pin" placeholder="Enter the Pin Code" required><br>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Join</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="alertModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+      <div id="error" class="alert alert-danger"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+    <h3>Connect With Us</h3>
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=thulir.udhayam.organisation@gmail.com" target="_blank"><span class="fa fa-envelope fa-3x"></span></a>
+    <!-- <a href="#"><span class="fa fa-facebook-square fa-2x"></span></a> -->
+    <a href="https://instagram.com/thulir_udhayam_organisation?igshid=1saoly4fcwj53" target="_blank"><span class="fa fa-instagram fa-3x"></span></a>
+    <!-- <a href="#"><span class="fa fa-twitter-square fa-2x"></span></a> -->
+    <!-- <a href="#"><span class="fa fa-youtube-square fa-2x"></span></a> -->
+  </footer>
+  
+  </body>
+  </html>
