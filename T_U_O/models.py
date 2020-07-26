@@ -22,7 +22,7 @@ class Opinion(models.Model):
 
 class Contact(models.Model):
     name = models.CharField(max_length = 250)
-    email = models.CharField(primary_key=True, null=False , editable=False, max_length = 100)
+    email = models.CharField(null=False , editable=False, max_length = 100)
     number = models.CharField(max_length = 20)
     subject = models.CharField(max_length = 20)
     message = models.TextField()

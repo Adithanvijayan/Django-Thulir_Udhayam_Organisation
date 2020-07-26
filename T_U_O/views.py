@@ -28,12 +28,13 @@ def joinForm(request):
             joinFlag = 0
         except:
             joinFlag = 1
-        urlName = request.META['HTTP_REFERER']
-        urlName = urlName.split('/')
-        fileName = urlName[-1]+".html"
-        print(fileName)
-        # return redirect(request.META['HTTP_REFERER'])
-        return render(request,fileName,{"joinFlag":joinFlag, "successMsg":"Joined Successfully"})
+        # urlName = request.META['HTTP_REFERER']
+        # urlName = urlName.split('/')
+        # fileName = urlName[-1]+".html"
+        # print(fileName)
+        # return redirect(request.META['HTTP_REFERER'],joinFlag=joinFlag, successMsg="Joined Successfully")
+        # return render(request,fileName,{"joinFlag":joinFlag, "successMsg":"Joined Successfully"})
+        return render(request,'index.html',{"joinFlag":joinFlag, "successMsg":"Joined Successfully"}) 
     return render(request,'index.html',{"joinFlag":joinFlag})
 
 def opinion(request):
